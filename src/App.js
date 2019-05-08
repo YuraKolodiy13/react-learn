@@ -19,11 +19,24 @@ class App extends Component {
       showCar: !this.state.showCar
     })
   };
-  changeTitleHandler = (e) => {
+  onChangeName = (name, index) => {
+    console.log(name, index);
+    const car = this.state.cars[index];
+    car.name = name;
+    const cars = [...this.state.cars];
+    cars[index] = car;
     this.setState({
-      pageTitle: e.target.value
-    })
+      cars: cars
+    });
   };
+
+  deleteHandler (i){
+    const cars = this.state.cars.concat();
+    cars.splice(i, 1);
+    this.setState({cars})
+  }
+
+
   render() {
     return (
         <div className="App">
@@ -34,7 +47,9 @@ class App extends Component {
             {this.state.showCar ?
                 this.state.cars.map((item, i) => {
                   return (
-                      <Car key={i} name={item.name} year={item.year} onChangeTitle={this.changeTitleHandler}/>
+                      <Car key={i} name={item.name} year={item.year}
+                           onDelete = {this.deleteHandler.bind(this, i)}
+                           onChangeName = { e => this.onChangeName(e.target.value, i)}/>
                   )
                 }) :
                 null}
