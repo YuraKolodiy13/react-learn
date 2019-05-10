@@ -1,0 +1,22 @@
+.Car{
+    padding: 20px;
+    text-align: center;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.input{
+
+}
+
+.input.green{
+    border: 1px solid green;
+}
+.input.red{
+    border: 1px solid red;
+}
+
+.input.bold{
+    border: 2px solid green;
+    font-weight: bold;
+}

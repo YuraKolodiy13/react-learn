@@ -20,7 +20,6 @@ class App extends Component {
     })
   };
   onChangeName = (name, index) => {
-    console.log(name, index);
     const car = this.state.cars[index];
     car.name = name;
     const cars = [...this.state.cars];
@@ -38,22 +37,34 @@ class App extends Component {
 
 
   render() {
+
+    let cars = null;
+
+    if(this.state.showCar){
+      cars = this.state.cars.map((item, i) => {
+        return (
+            <Car key={i}
+                 name={item.name}
+                 year={item.year}
+                 onDelete = {this.deleteHandler.bind(this, i)}
+                 onChangeName = { e => this.onChangeName(e.target.value, i)}
+            />
+        )
+      })
+    }
     return (
         <div className="App">
-          <header className="App-header">
-            <p>{this.state.pageTitle}</p>
-            <button onClick={this.toggleHandler}>toggle cars</button>
+          <h1>{this.state.pageTitle}</h1>
+          <button onClick={this.toggleHandler}>toggle cars</button>
 
-            {this.state.showCar ?
-                this.state.cars.map((item, i) => {
-                  return (
-                      <Car key={i} name={item.name} year={item.year}
-                           onDelete = {this.deleteHandler.bind(this, i)}
-                           onChangeName = { e => this.onChangeName(e.target.value, i)}/>
-                  )
-                }) :
-                null}
-          </header>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            padding: 20,
+          }}>
+            {cars}
+          </div>
+
         </div>
     );
   }
