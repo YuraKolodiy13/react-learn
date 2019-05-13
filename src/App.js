@@ -1,18 +1,25 @@
 import React, { Component }  from 'react';
 import './App.scss';
 import Car from './Car/Car';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Counter from './Counter/Counter';
 
 class App extends Component {
 
-  state = {
-    cars: [
-      {name: 'mazda', year: 2018},
-      {name: 'doodgee', year: 2118},
-      {name: 'rover', year: 2008}
-    ],
-    pageTitle: "let's go man",
-    showCar: false
-  };
+  constructor(props){
+    console.log('App constructor');
+    super(props);
+
+    this.state = {
+      cars: [
+        {name: 'mazda', year: 2018},
+        // {name: 'doodgee', year: 2118},
+        // {name: 'rover', year: 2008}
+      ],
+      pageTitle: "let's go man",
+      showCar: false
+    }
+  }
 
   toggleHandler = () => {
     this.setState({
@@ -35,20 +42,31 @@ class App extends Component {
     this.setState({cars})
   }
 
+  componentWillMount(){
+    console.log('App compWillMount');
+  }
+
+  componentDidMount(){
+    console.log('App compDidMount');
+  }
+
 
   render() {
-
+    console.log('App render');
     let cars = null;
 
     if(this.state.showCar){
       cars = this.state.cars.map((item, i) => {
         return (
-            <Car key={i}
-                 name={item.name}
-                 year={item.year}
-                 onDelete = {this.deleteHandler.bind(this, i)}
-                 onChangeName = { e => this.onChangeName(e.target.value, i)}
-            />
+           <ErrorBoundary key={i}>
+             <Car
+                  name={item.name}
+                  year={item.year}
+                  onDelete = {this.deleteHandler.bind(this, i)}
+                  onChangeName = { e => this.onChangeName(e.target.value, i)}
+             />
+             <Counter/>
+           </ErrorBoundary>
         )
       })
     }
