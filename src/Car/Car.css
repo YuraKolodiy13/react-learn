@@ -10,8 +10,8 @@
   box-shadow: 2px 2px 20px 5px rgba(0,0,0, .8);
 }
 
-.input{
-
+.input:focus{
+  outline: 5px solid gold;
 }
 
 .input.green{

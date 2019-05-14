@@ -13,8 +13,8 @@ class App extends Component {
     this.state = {
       cars: [
         {name: 'mazda', year: 2018},
-        // {name: 'doodgee', year: 2118},
-        // {name: 'rover', year: 2008}
+        {name: 'doodgee', year: 2118},
+        {name: 'rover', year: 2122}
       ],
       pageTitle: "let's go man",
       showCar: false
@@ -59,13 +59,15 @@ class App extends Component {
       cars = this.state.cars.map((item, i) => {
         return (
            <ErrorBoundary key={i}>
-             <Car
-                  name={item.name}
-                  year={item.year}
-                  onDelete = {this.deleteHandler.bind(this, i)}
-                  onChangeName = { e => this.onChangeName(e.target.value, i)}
-             />
-             <Counter/>
+             <div className="wrap">
+               <Car
+                   name={item.name}
+                   year={item.year}
+                   onDelete = {this.deleteHandler.bind(this, i)}
+                   onChangeName = { e => this.onChangeName(e.target.value, i)}
+               />
+               <Counter/>
+             </div>
            </ErrorBoundary>
         )
       })
@@ -76,9 +78,9 @@ class App extends Component {
           <button onClick={this.toggleHandler}>toggle cars</button>
 
           <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
             padding: 20,
+            display: 'flex',
+            justifyContent: 'space-between'
           }}>
             {cars}
           </div>

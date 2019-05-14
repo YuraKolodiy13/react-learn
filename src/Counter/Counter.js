@@ -1,4 +1,5 @@
 import React from 'react'
+import './Counter.scss';
 // import Aux from '../hoc/Aux';
 
 
@@ -27,11 +28,11 @@ export default class Counter extends  React.Component{
 
   render(){
     return(
-        <>
+        <div className="carWrap">
           <h2>Counter {this.state.counter}</h2>
           <button onClick={this.increaseCounter}>+</button>
           <button onClick={this.decreaseCounter}>-</button>
-        </>
+        </div>
     )
     // return[
     //   <h2>Counter {this.state.counter}</h2>,
