@@ -1,6 +1,7 @@
 import React from 'react'
 import './Counter.scss';
 // import Aux from '../hoc/Aux';
+import Counter2 from '../Counter2/Counter2';
 
 
 export default class Counter extends  React.Component{
@@ -30,6 +31,7 @@ export default class Counter extends  React.Component{
     return(
         <div className="carWrap">
           <h2>Counter {this.state.counter}</h2>
+          <Counter2/>
           <button onClick={this.increaseCounter}>+</button>
           <button onClick={this.decreaseCounter}>-</button>
         </div>
